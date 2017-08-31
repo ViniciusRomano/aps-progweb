@@ -30,6 +30,7 @@ body {
 
 .button {
     position: relative;
+    text-decoration: none;
 }
 
 .inside_content {
@@ -55,6 +56,7 @@ body {
     padding: 22.5px 18px 22.5px 0px;
     font-size: 12px;
     top: 25%;
+    color: #616161
 }
 
 .button.right_bottom {
@@ -68,20 +70,51 @@ body {
 }
 
 .button.right_icons.download {
-    padding: 7px 40px;
+    padding: 1px 30px;
     top: 8px;
     background-color: #7fc857;
     border-radius: 4px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
 }
 
 .button.right_icons.sandbox {
+    padding: 0px 29px;
     margin-right: 5px;
-    margin-left: 10px;
-    padding: 6px 50px;
-    top: 8px;
+    margin-top: 8px;
     background-color: white;
     border-radius: 4px;
     border: 1px solid #7fc857;
+    color: #7fc857;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button.right_icons.sandbox span {
+    margin-top: 6px;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.button.right_icons.download span {
+    margin-top: 6px;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.button.left.fgi {
+    position: absolute;
+    top: 60px;
+    font-size: 15px;
+    margin: 0 5px;
+    color: white;
+    border-left: 1px solid white;
+    padding: 2px 15px;
+}
+
+.button.left.logo {
+    top: 7px;
 }
 
 .white {
