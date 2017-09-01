@@ -1,3 +1,13 @@
+/* @font-face {
+    font-family: 'Akzidenz';
+    src: url('fonttop.woff2') format('woff2'), url('fonttop.woff') format('woff');
+}
+ */
+@font-face {
+    font-family: 'Akzidenz';
+    src: url('../fonts/Akzidenz-Grotesk-BQ-Light.woff2') format('woff2'), url('../fonts/Akzidenz-Grotesk-BQ-Light.woff') format('woff');
+}
+
 body {
     margin: auto;
 }
@@ -43,7 +53,7 @@ body {
     position: relative;
 }
 
-.back_filter {
+.filter {
     background-color: rgba(0, 0, 0, 0.6);
     position: absolute;
     top: 0;
@@ -56,12 +66,16 @@ body {
     padding: 22.5px 18px 22.5px 0px;
     font-size: 12px;
     top: 25%;
-    color: #616161
+    color: #616161;
+    font-family: 'Akzidenz';
 }
 
 .button.right_bottom {
     float: right;
-    padding: 13px 10px;
+    padding: 13px 17px;
+    font-family: 'Helvetica';
+    color: #D2D2CE;
+    font-size: 14px;
 }
 
 .button.right_icons {
@@ -108,15 +122,88 @@ body {
     top: 60px;
     font-size: 15px;
     margin: 0 5px;
-    color: white;
+    color: #D2D2CE;
     border-left: 1px solid white;
-    padding: 2px 15px;
+    padding: 4px 15px;
+    font-family: 'Helvetica';
+    font-size: 12px;
 }
 
 .button.left.logo {
     top: 7px;
 }
 
-.white {
+.middle{
+    position: absolute;
+    top: 213px;
+    width: 100%;
+    height: 363px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.middle_content{
+    position: relative;
+    margin: 0 auto;
+    width: 1140px;
+
+}
+
+.middle_left{
+    float: left;
+    padding: 20px 30px;
+    margin: 15px 0;
+    font-family: 'Akzidenz';
     color: white;
+}
+
+.middle_right{
+    float: right;
+    margin: 50px 0 20px 250px;
+    font-family: 'Akzidenz';
+    color: white;
+    height: 223px;
+    width: 250px;
+    background-color: white;
+    padding: 50px;
+
+}
+
+.middle_left h1{
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 1.25em;
+    margin: 30px 0px 15px 0px;
+}
+
+.middle_left p{
+    font-size: 16px;
+    line-height:1.5em;
+}
+
+.green_button{
+    padding: 15px 40px;
+    border: 1px;
+    margin-top: 20px;
+    border-radius: 4px;
+    background-color: #7fc857;
+    color: white;
+    font: 13.3333px Arial;
+    font-weight:bold;
+}
+
+.middle_right h1{
+    color: #424243;
+    font-family: 'Akzidenz';
+    font-weight: 300;
+    line-height: 1.25em;
+    font-size: 30px;
+}
+
+.middle_right p{
+    color: #424243;
+    font-family: 'Akzidenz';
+    font-weight: 300;
+    line-height: 1.5em;
+    font-size: 16px;
 }
