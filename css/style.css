@@ -8,6 +8,7 @@
     src: url('../fonts/Akzidenz-Grotesk-BQ-Light.woff2') format('woff2'), url('../fonts/Akzidenz-Grotesk-BQ-Light.woff') format('woff');
 }
 
+
 body {
     margin: auto;
 }
@@ -23,16 +24,18 @@ body {
 .first_nav {
     background-color: white;
     height: 50%;
-    max-width: 1200px;
+    max-width: 1160px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+    padding: 0px 20px;
 }
 
 .second_nav {
     background-color: rgba(0, 0, 0, 0.1);
     height: 50%;
-    max-width: 1200px;
+    max-width: 1160px;
+    padding: 0px 20px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -50,9 +53,14 @@ body {
 }
 
 .background {
-    position: relative;
+    position: fixed;
+    background-size: cover;
+    height: 100%;
 }
 
+.video_background{
+    width:fit-content;
+}
 .filter {
     background-color: rgba(0, 0, 0, 0.6);
     position: absolute;
@@ -206,4 +214,98 @@ body {
     font-weight: 300;
     line-height: 1.5em;
     font-size: 16px;
+}
+
+.hidden{
+    display: none !important;
+}
+@media screen and (max-width: 1200px){
+    .middle_right h1{
+        font-size: 20px;
+    }
+    
+    .middle_right{
+        height: 145px;
+        width: 396px;
+        padding: 10px 30px;
+        margin: 0;
+        margin-top: 90px;
+        margin-right: 40px;
+    }
+
+    .middle_right p{
+        width: 50%;
+    }
+
+    .middle_right .green_button{
+        position: relative;
+        float: right;
+        margin-top: 0;
+        top: -50px;
+    }
+}
+
+@media screen and (max-width: 1005px){
+    .middle_right{
+        margin: auto;  
+        position: absolute;
+        left:0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin-top: 400px;
+    }
+
+    .middle_left{
+        width: 450px;
+        margin: auto;  
+        position: absolute;
+        left:0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+}
+
+@media screen and (max-width: 900px){
+    .button.right_bottom{
+        display: none;
+        margin-top:10px;
+    }
+    .button.right_icons.sandbox{
+        display: none;
+    }
+    .button.right_icons.download{
+        display: none;
+    }
+    .whats{
+        display: none;
+    }
+    .hidden{
+        display: block !important;
+        padding: 0px 25px 0px 15px !important;
+        width: 10px;
+    }
+    .second_nav {
+        background-color: #222222;
+    }
+}
+
+
+@media screen and (max-width: 600px){
+    .middle_right p{
+        width: 40%;
+        font-size: 12px;
+    }
+
+    .middle_right{
+        width: 350px;
+    }
+}
+
+@media screen and (max-width: 500px){
+
+    .middle_right{
+        margin-left: 10%;
+    }
 }
