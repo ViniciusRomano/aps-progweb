@@ -183,9 +183,7 @@ body {
     line-height: 1.25em;
     margin: 30px 0px 15px 0px;
 }
-.break_text{
-    display: none;
-}
+
 .middle_left p{
     font-size: 16px;
     line-height:1.5em;
@@ -248,9 +246,6 @@ body {
 }
 
 @media screen and (max-width: 1005px){
-    .break_text{
-        display: none;
-    }
     .middle{
         top: 80px;
     }
