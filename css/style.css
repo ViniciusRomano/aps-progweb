@@ -8,11 +8,34 @@
     src: url('../fonts/Akzidenz-Grotesk-BQ-Light.woff2') format('woff2'), url('../fonts/Akzidenz-Grotesk-BQ-Light.woff') format('woff');
 }
 
+html, body{
+    height: 100%;
+  }
 
-body {
-    margin: auto;
+body { 
+    background-image: url("../img/atlas.jpg") ;
+    background-position: center center;
+    background-repeat:  no-repeat;
+    background-attachment: fixed;
+    background-size:  cover;
 }
+  
+div, body{
+    margin: 0;
+    padding: 0;
+ }
 
+ .background {
+    height: 100%; 
+    width: 100%; 
+ }
+  
+/* body {
+    background-repeat: no-repeat;
+    background-image: url("../img/atlas.jpg");
+    background-size:cover;
+}
+ */
 .nav {
     position: fixed;
     height: 95px;
@@ -52,15 +75,6 @@ body {
     margin: 0 auto;
 }
 
-.background {
-    position: fixed;
-    background-size: cover;
-    height: 100%;
-}
-
-.video_background{
-    width:fit-content;
-}
 .filter {
     background-color: rgba(0, 0, 0, 0.6);
     position: absolute;
