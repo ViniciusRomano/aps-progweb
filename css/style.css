@@ -13,7 +13,7 @@ html, body{
   }
 
 body { 
-    background-image: url("../img/atlas.jpg") ;
+    background-image: url("../img/atlas.png") ;
     background-position: center center;
     background-repeat:  no-repeat;
     background-attachment: fixed;
