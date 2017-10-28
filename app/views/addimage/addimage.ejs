@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html class="height-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <section class="banner">
+        <div class="wrapper">
+            <div class="main-title">
+                <h1 class="primary-text">Add new images</h1>
+            </div>
+            <form action="/image" method="POST" enctype="multipart/form-data" class="image-form">
+                <div>
+                    <label>Image name: </label>
+                    <input type="text" name="image_nickname"/>                    
+                    <input type="file" name="myimage">
+                </div>
+                 <%if(error){%>
+                    <div>
+                        <p class="error">
+                            <%=error%>
+                        </p>
+                    </div>
+                    <%}%>
+                <div class="banner-buttons">
+                    <input type="submit" value="Add image"/>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+
+</html>

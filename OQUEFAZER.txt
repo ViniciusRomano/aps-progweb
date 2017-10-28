@@ -1,0 +1,4 @@
+-- busca de imagens (criar "nome" dela)
+-- upload de imagens
+-- validação no backend(post da imagem)
+-- erros no registro

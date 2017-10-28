@@ -5,6 +5,7 @@
     <title></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale= 0.8s , maximum-scale=0.8" />
+    <link rel="shortcut icon" href="favicon.ico">
     <link href="css/style.css" rel="stylesheet">
 </head>
 
@@ -18,28 +19,37 @@
                 <a class="button left" href="#">DOCS</a>
                 <a class="button left" href="#">UNIVERSITY</a>
                 <a class="button left whats" href="#">WHAT'S MONGODB?</a>
-                <a class="button left" href="#">LOGIN</a>
-                <!-- right side navbar -->
-                <a class="button right_icons download hidden" href="#"><img src="img/desktop.png" alt=""></a>
-                <a class="button right_icons download" href="#"><span>Download</span><img src="img/desktop.png" alt=""></a>
-                <a class="button right_icons sandbox" href="#"><span>Free Sandbox</span><img src="img/rocket.png" alt=""></a>
-                <a class="button right_icons" href="# ">
-                    <svg height="22 " width="22 " viewBox="0 0 24 24 " fill="#9E9E9E ">
-                        <path d="M21.7 20.3l-4.5-4.5c1.1-1.4 1.8-3.3 1.8-5.3 0-4.7-3.8-8.5-8.5-8.5s-8.5 3.8-8.5 8.5c0 4.7
+
+                <%if(session.status){%>
+                    <a class="button left" href="#" style="font-size: 15px;">
+                        User: <%=session.username%>
+                    </a>
+                    <a class="button left" href="/logout">LOGOUT</a>
+                    <%}else{%>
+                        <a class="button left" href="/login">LOGIN</a>
+                        <%}%>
+
+                            <!-- right side navbar -->
+                            <a class="button right_icons download hidden" href="#"><img src="img/desktop.png" alt=""></a>
+                            <a class="button right_icons download" href="#"><span>Download</span><img src="img/desktop.png" alt=""></a>
+                            <a class="button right_icons sandbox" href="#"><span>Free Sandbox</span><img src="img/rocket.png" alt=""></a>
+                            <a class="button right_icons" href="# ">
+                                <svg height="22 " width="22 " viewBox="0 0 24 24 " fill="#9E9E9E ">
+                                    <path d="M21.7 20.3l-4.5-4.5c1.1-1.4 1.8-3.3 1.8-5.3 0-4.7-3.8-8.5-8.5-8.5s-8.5 3.8-8.5 8.5c0 4.7
                     3.8 8.5 8.5 8.5 2 0 3.8-0.7 5.3-1.8l4.5 4.5c0.2 0.2 0.5 0.3 0.7 0.3s0.5-0.1 0.7-0.3c0.4-0.4 0.4-1 0-1.4zM4
                     10.5c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5c0 1.8-0.7 3.4-1.9 4.6 0 0 0 0 0 0s0 0 0 0c-1.2 1.2-2.8 1.9-4.6
                     1.9-3.6 0-6.5-2.9-6.5-6.5z " />
-                    </svg>
-                </a>
-                <a class="button right_icons" style="padding: 16.5px 10px;" href="#">
-                    <svg height="18 " width="18 " viewBox="0 0 32 32 " fill="#9E9E9E ">
-                        <path d="M2.13 1.19c1.28-1.28 5.14-1.49 5.17-0.82 0.03 0.68 3.48 8.19 3.51 8.87s-2.27 2.99-2.95
+                                </svg>
+                            </a>
+                            <a class="button right_icons" style="padding: 16.5px 10px;" href="#">
+                                <svg height="18 " width="18 " viewBox="0 0 32 32 " fill="#9E9E9E ">
+                                    <path d="M2.13 1.19c1.28-1.28 5.14-1.49 5.17-0.82 0.03 0.68 3.48 8.19 3.51 8.87s-2.27 2.99-2.95
                     3.66c-0.67 0.67 4.51 6.53 4.61 6.64 0.11 0.1 5.96 5.29 6.63 4.62 0.67-0.68 2.98-2.98 3.65-2.95 0.68 0.03
                     8.17 3.49 8.85 3.52 0.68 0.03 0.46 3.9-0.81 5.18-1.09 1.1-6.75 5.07-16.59-2.03-1.08-0.62-2.79-2.05-5.38-4.65
                     0 0 0 0 0 0 0 0 0 0-0.01-0.01s0 0-0.01-0.01c0 0 0 0 0 0-2.59-2.6-4.01-4.31-4.63-5.39-7.08-9.86-3.12-15.54-2.02-16.63z "
-                        />
-                    </svg>
-                </a>
+                                    />
+                                </svg>
+                            </a>
             </div>
         </div>
         <div class="second_nav">
@@ -79,6 +89,24 @@
             </div>
         </div>
     </div>
+    <div class="footer">
+    <div class="footer_content">
+        <% for (image of images){%>
+        <div class="square" style="background-image: url('../uploads/<%= image.filename %>');">
+            <div class="overlay">
+                <div class="text">Created by:<%= image.username %></div>
+                <p class="link" href=""><span style="align=center;"><%= image.image_nickname %></span></p> 
+            </div>
+        </div>
+        <% } %>
+        <div class="icon_add">
+            <form action="/image" method="POST" class="image-form">
+                <a href="/image">		
+                <img src="../img/icon_add.png" height="50" width="50"></a>
+            </form>                
+        </div>
+    </div>
+</div>            
 </body>
 
 </html>
