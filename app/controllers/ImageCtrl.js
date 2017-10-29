@@ -10,7 +10,11 @@ function ImageCtrl(app, mongoose) {
         var nickname = data.image_nickname;
         // Open mongo connection
         var connection = new app.databases.mongoConnection();
-        console.log(req.file == null);
+        // Protect route
+        if (!session.status) {
+            res.status(403).render('errors/403');
+        }
+        // Upload error
         if (req.file != null) {
             var image = new imageModel({
                 username: session.username,
@@ -20,7 +24,7 @@ function ImageCtrl(app, mongoose) {
         } else {
             res.status(401).render('addimage/addimage', { error: 'Error: Image upload error!' });
         }
-        // PROTEGER ROTA 
+        // Invalid image nickname 
         if (nickname != '') {
             image.save(function (err) {
                 if (err) {
@@ -40,19 +44,26 @@ function ImageCtrl(app, mongoose) {
     this.search = function (req, res, next) {
         var imageModel = app.models.ImageModel;
         var connection = new app.databases.mongoConnection();
-        imageModel.find({ 'image_nickname': req.params.nickname })
+        var nickname = req.query.image_nickname;
+        // name empty
+        if (!nickname) {
+            res.render('home/index', { session: req.session, images: [], error: 'Invalid Search!' });
+        }
+        imageModel.find({ 'image_nickname': nickname })
             .then(
             function success(images) {
                 console.log(images)
-                res.render('home/index', { session: req.session, images: images });
+                if (!images[0]) {
+                    // No image found
+                    res.render('home/index', { session: req.session, images: images, error: 'No image found!' });
+                } else {
+                    res.render('home/index', { session: req.session, images: images, error: null });
+                }
             }, function error(err) {
                 console.log(err);
                 res.render('home/index', { session: req.session, images: images, err: error });
                 connection.close();
-            }
-            )
-            .catch(function (error) {
-                console.log(error);
+            }).catch(function (error) {
                 res.render('home/index', { session: req.session, images: images, err: error });
                 connection.close();
             });

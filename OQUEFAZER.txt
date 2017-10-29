@@ -1,4 +1,4 @@
--- busca de imagens (criar "nome" dela)
--- upload de imagens
--- validação no backend(post da imagem)
--- erros no registro
+FEITO -- busca de imagens (criar "nome" dela)
+FEITO -- upload de imagens
+FEITO -- validação no backend(post da imagem)
+FEITO -- erros no registro

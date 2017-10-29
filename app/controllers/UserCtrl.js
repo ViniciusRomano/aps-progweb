@@ -7,16 +7,14 @@ function UserCtrl(app, mongoose) {
             .then(
             function success(images) {
                 console.log('entrei')
-                res.render('home/index', { session: req.session, images: images });
+                res.render('home/index', { session: req.session, images: images, error: null });
             }, function error(err) {
-                console.log(err);
-                res.render('home/index', { session: req.session, images: images });
+                res.render('home/index', { session: req.session, images: images, error: err });
                 connection.close();
             }
             )
             .catch(function (error) {
-                console.log(error);
-                res.render('home/index', { session: req.session, images: images });
+                res.render('home/index', { session: req.session, images: images, error: error });
                 connection.close();
             });
     }

@@ -37,6 +37,13 @@
                     <label>Password: </label>
                     <input type="password" name="password" />
                 </div>
+                 <%if(error){%>
+                    <div>
+                        <p class="error">
+                            <%=error%>
+                        </p>
+                    </div>
+                    <%}%>
                 <div class="banner-buttons">
                     <input type="submit" value="Register" />
                 </div>

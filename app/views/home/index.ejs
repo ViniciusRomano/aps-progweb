@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale= 0.8s , maximum-scale=0.8" />
     <link rel="shortcut icon" href="favicon.ico">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -30,9 +30,9 @@
                         <%}%>
 
                             <!-- right side navbar -->
-                            <a class="button right_icons download hidden" href="#"><img src="img/desktop.png" alt=""></a>
-                            <a class="button right_icons download" href="#"><span>Download</span><img src="img/desktop.png" alt=""></a>
-                            <a class="button right_icons sandbox" href="#"><span>Free Sandbox</span><img src="img/rocket.png" alt=""></a>
+                            <a class="button right_icons download hidden" href="#"><img src="/img/desktop.png" alt=""></a>
+                            <a class="button right_icons download" href="#"><span>Download</span><img src="/img/desktop.png" alt=""></a>
+                            <a class="button right_icons sandbox" href="#"><span>Free Sandbox</span><img src="/img/rocket.png" alt=""></a>
                             <a class="button right_icons" href="# ">
                                 <svg height="22 " width="22 " viewBox="0 0 24 24 " fill="#9E9E9E ">
                                     <path d="M21.7 20.3l-4.5-4.5c1.1-1.4 1.8-3.3 1.8-5.3 0-4.7-3.8-8.5-8.5-8.5s-8.5 3.8-8.5 8.5c0 4.7
@@ -54,7 +54,7 @@
         </div>
         <div class="second_nav">
             <div class="inside_content">
-                <a class="button left logo" href="#"><img src="img/mongodb-logo.png" width="110px" height="30px"></a>
+                <a class="button left logo" href="#"><img src="/img/mongodb-logo.png" width="110px" height="30px"></a>
                 <a class="button left fgi" href="#">FOR GIANT IDEAS</a>
                 <a class="button right_bottom hidden" href="# ">
                     <svg height="30" width="30" viewBox="0 0 768 768 " fill="#FFF">
@@ -90,6 +90,22 @@
         </div>
     </div>
     <div class="footer">
+        <form action="/image/search" method="GET" enctype="multipart/form-data" class="image-form">
+            <div>
+               <label>Search image name: </label>
+                    <input type="text" name="image_nickname"/>                    
+                </div>
+                 <%if(error){%>
+                    <div>
+                        <p class="error">
+                            <%=error%>
+                        </p>
+                    </div>
+                    <%}%>
+                <div class="banner-buttons">
+                    <input type="submit" value="Search"/>
+                </div>
+        </form>
     <div class="footer_content">
         <% for (image of images){%>
         <div class="square" style="background-image: url('../uploads/<%= image.filename %>');">

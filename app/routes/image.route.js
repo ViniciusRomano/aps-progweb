@@ -18,11 +18,12 @@ module.exports = function (app) {
         ImageCtrl.render(req, res, next);
     });
 
-    app.get('/image/:nickname', function (req, res, next) {
-        ImageCtrl.search(req, res, next);
-    });
-
     app.post('/image', upload.single('myimage'), function (req, res, next) {
         ImageCtrl.create(req, res, next);
     });
+
+    app.get('/image/search', function (req, res, next) {
+        ImageCtrl.search(req, res, next);
+    });
+
 }

@@ -38,7 +38,7 @@ function SignupCtrl(app, mongoose) {
                 connection.close();
             })
             .catch(function error(err) {
-                next(err);
+                res.status(401).render('register/register', { error: 'Error: Invalid fields!' });
             });
     };
 
