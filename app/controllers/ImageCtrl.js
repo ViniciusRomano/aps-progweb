@@ -14,7 +14,7 @@ function ImageCtrl(app, mongoose) {
         if (!session.status) {
             res.status(403).render('errors/403');
         }
-        // Upload error
+        // --------------------- //
         if (req.file != null) {
             var image = new imageModel({
                 username: session.username,
@@ -22,8 +22,11 @@ function ImageCtrl(app, mongoose) {
                 filename: req.file.filename
             });
         } else {
+            // Upload error
             res.status(401).render('addimage/addimage', { error: 'Error: Image upload error!' });
         }
+        // --------------------- //
+
         // Invalid image nickname 
         if (nickname != '') {
             image.save(function (err) {
@@ -45,14 +48,16 @@ function ImageCtrl(app, mongoose) {
         var imageModel = app.models.ImageModel;
         var connection = new app.databases.mongoConnection();
         var nickname = req.query.image_nickname;
-        // name empty
+        // Name empty
         if (!nickname) {
             res.render('home/index', { session: req.session, images: [], error: 'Invalid Search!' });
         }
+
+        // --------------------- //
+
         imageModel.find({ 'image_nickname': nickname })
             .then(
             function success(images) {
-                console.log(images)
                 if (!images[0]) {
                     // No image found
                     res.render('home/index', { session: req.session, images: images, error: 'No image found!' });
@@ -60,7 +65,6 @@ function ImageCtrl(app, mongoose) {
                     res.render('home/index', { session: req.session, images: images, error: null });
                 }
             }, function error(err) {
-                console.log(err);
                 res.render('home/index', { session: req.session, images: images, err: error });
                 connection.close();
             }).catch(function (error) {
