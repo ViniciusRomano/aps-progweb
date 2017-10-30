@@ -38,7 +38,17 @@ function SignupCtrl(app, mongoose) {
                 connection.close();
             })
             .catch(function error(err) {
-                res.status(401).render('register/register', { error: 'Error: Invalid fields!' });
+                // mongo errors (duplicate key error)
+                if (err.errmsg) {
+                    // get duplicate field
+                    var field = err.errmsg.split(".$")[1];
+                    field = field.split(" dup key")[0];
+                    field = field.substring(0, field.lastIndexOf("_"));
+                    res.status(401).render('register/register', { error: 'Error: Mongo error, duplicate ' + field + '!' });
+                } else {
+                    res.status(401).render('register/register', { error: 'Error: Some fields were not filled!' });
+                }
+
             });
     };
 

@@ -14,7 +14,10 @@ var UserSchema = new Schema({
     },
     address: {
         type: String,
-        required: true
+        required: true,
+        index: {
+            unique: true
+        }
     },
     addressNumber: {
         type: Number,
