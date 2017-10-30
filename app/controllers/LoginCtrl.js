@@ -37,7 +37,6 @@ function LoginCtrl(app, mongoose) {
             }
             )
             .catch(function (error) {
-                console.log(error);
                 res.status(401).render('login/login', { error: error });
                 connection.close();
             });

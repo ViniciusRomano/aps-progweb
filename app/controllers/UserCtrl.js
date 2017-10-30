@@ -6,7 +6,6 @@ function UserCtrl(app, mongoose) {
         imageModel.find({})
             .then(
             function success(images) {
-                console.log('entrei')
                 res.render('home/index', { session: req.session, images: images, error: null });
             }, function error(err) {
                 res.render('home/index', { session: req.session, images: images, error: err });
