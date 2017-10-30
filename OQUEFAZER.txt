@@ -1,0 +1,4 @@
+FEITO -- busca de imagens (criar "nome" dela)
+FEITO -- upload de imagens
+FEITO -- validação no backend(post da imagem)
+FEITO -- erros no registro

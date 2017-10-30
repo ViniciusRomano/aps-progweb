@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html class="height-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <section class="banner">
+        <div class="wrapper">
+            <div class="main-title">
+                <h1 class="primary-text">MongoDB Login</h1>
+            </div>
+            <div class="main-subtitle">
+                <p>Register or log in</p>
+            </div>
+            <form action="/login" method="POST" class="login-form">
+                <div>
+                    <label>Username: </label>
+                    <input type="text" name="username" />
+                </div>
+                <div>
+                    <label>Password: </label>
+                    <input type="password" name="password" />
+                </div>
+                <%if(error){%>
+                    <div>
+                        <p class="error">
+                            <%=error%>
+                        </p>
+                    </div>
+                    <%}%>
+                        <div class="banner-buttons">
+                            <input type="submit" value="Login" />
+                        </div>
+            </form>
+            <a href="/signup">Don't have an account? Register!</a>
+        </div>
+    </section>
+</body>
+
+</html>
