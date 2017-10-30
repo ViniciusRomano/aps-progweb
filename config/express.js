@@ -46,7 +46,7 @@ module.exports = function () {
             }
         }
         console.log(error);
-        next(error); n
+        next(error);
     });
 
     return app;
