@@ -12,7 +12,11 @@ function ImageCtrl(app, mongoose) {
         var connection = new app.databases.mongoConnection();
         // Protect route
         if (!session.status) {
-            res.status(403).render('errors/403');
+            console.log("aisjaos")
+            res.status(403).json({
+                error: 'You are not logged in'
+            });
+            res.end();
         }
         // --------------------- //
         if (req.file != null) {
@@ -23,7 +27,10 @@ function ImageCtrl(app, mongoose) {
             });
         } else {
             // Upload error
-            res.status(401).render('addimage/addimage', { error: 'Error: Image upload error!' });
+            res.status(401).json({
+                error: 'Error: Image upload error!'
+            });
+            res.end();
         }
         // --------------------- //
 
@@ -32,43 +39,95 @@ function ImageCtrl(app, mongoose) {
             image.save(function (err) {
                 if (err) {
                     //name error
-                    res.status(401).render('addimage/addimage', { error: 'Error: DB error!' });
+                    return res.status(401).json({
+                        error: 'Error: DB error!'
+                    });
+                    res.end();
 
                 } else {
-                    res.status(201).redirect('/');
+                    res.status(201).json({
+                        msg: "created!"
+                    });
+                    res.end();
                 }
             });
         } else {
-            res.status(401).render('addimage/addimage', { error: 'Error: Name invalid!' });
+            return res.status(401).json({
+                error: 'Error: Name invalid!'
+            });
+            res.end();
         }
 
+    };
+
+    this.searchRegex = function (req, res, next) {
+        var imageModel = app.models.ImageModel;
+        var connection = new app.databases.mongoConnection();
+        var nickname = req.params.nickname;
+
+        imageModel.find({
+                'image_nickname': {
+                    $regex: '^' + nickname
+                }
+            })
+            .then(
+                function success(images) {
+                    res.status(200).json(images);
+                },
+                function error(err) {
+                    res.status(400).json(err);
+                    connection.close();
+                }).catch(function (error) {
+                res.status(400).json(error);
+                connection.close();
+            });
     };
 
     this.search = function (req, res, next) {
         var imageModel = app.models.ImageModel;
         var connection = new app.databases.mongoConnection();
-        var nickname = req.query.image_nickname;
-        // Name empty
-        if (!nickname) {
-            res.render('home/index', { session: req.session, images: [], error: 'Invalid Search!' });
-        }
+        var nickname = req.params.nickname;
 
+        imageModel.find({
+                'image_nickname': nickname
+            })
+            .then(
+                function success(images) {
+                    res.status(200).json(images);
+                },
+                function error(err) {
+                    res.status(400).json(err);
+                    connection.close();
+                }).catch(function (error) {
+                res.status(400).json(error);
+                connection.close();
+            });
+    };
+    this.getAll = function (req, res, next) {
+
+        var imageModel = app.models.ImageModel;
+        var connection = new app.databases.mongoConnection();
+        // Name empty
+        /*         if (!nickname) {
+                    res.render('home/index', { session: req.session, images: [], error: 'Invalid Search!' });
+                }
+         */
         // --------------------- //
 
-        imageModel.find({ 'image_nickname': nickname })
+        imageModel.find({})
             .then(
-            function success(images) {
-                if (!images[0]) {
-                    // No image found
-                    res.render('home/index', { session: req.session, images: images, error: 'No image found!' });
-                } else {
-                    res.render('home/index', { session: req.session, images: images, error: null });
-                }
-            }, function error(err) {
-                res.render('home/index', { session: req.session, images: images, err: error });
-                connection.close();
-            }).catch(function (error) {
-                res.render('home/index', { session: req.session, images: images, err: error });
+                function success(images) {
+                    res.status(200).json(images);
+                },
+                function error(err) {
+                    res.status(400).json({
+                        "error": err
+                    });
+                    connection.close();
+                }).catch(function (error) {
+                res.status(400).json({
+                    "error": error
+                });
                 connection.close();
             });
     };
@@ -76,7 +135,9 @@ function ImageCtrl(app, mongoose) {
     this.render = function (req, res, next) {
         let session = req.session;
         if (session.status) {
-            res.render('addimage/addimage', { error: null })
+            res.render('addimage/addimage', {
+                error: null
+            })
         } else {
             res.status(403).render('errors/403');
         }

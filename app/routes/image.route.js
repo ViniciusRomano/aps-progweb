@@ -10,20 +10,55 @@ var storage = multer.diskStorage({
     }
 })
 
-var upload = multer({ storage: storage })
+var upload = multer({
+    storage: storage
+})
 module.exports = function (app) {
     var ImageCtrl = new app.controllers.ImageCtrl(app, mongoose);
 
-    app.get('/image', function (req, res, next) {
+
+    app.get('/create/image', function (req, res, next) {
         ImageCtrl.render(req, res, next);
     });
 
-    app.post('/image', upload.single('myimage'), function (req, res, next) {
+    // -- routes to search all images -- 
+
+    app.get('/images', function (req, res, next) {
+        ImageCtrl.getAll(req, res, next);
+    });
+
+    app.get('/images/:nickname', function (req, res, next) {
+        ImageCtrl.search(req, res, next);
+    });
+    app.get('/images/regex/:nickname', function (req, res, next) {
+        ImageCtrl.searchRegex(req, res, next);
+    });
+
+    // -----------------------------
+
+    // -- routes to create images -- 
+
+    // render html page
+    app.get('/create/image', function (req, res, next) {
+        ImageCtrl.render(req, res, next);
+    });
+    // create image
+    app.post('/create/image', upload.single('myimage'), function (req, res, next) {
         ImageCtrl.create(req, res, next);
     });
 
+    // -----------------------------
+
+    // -- route to search images in db --
     app.get('/image/search', function (req, res, next) {
         ImageCtrl.search(req, res, next);
+    });
+
+    // -----------------------------
+
+    //test route
+    app.post('/teste', function (req, res, next) {
+        ImageCtrl.post(req, res, next);
     });
 
 }
