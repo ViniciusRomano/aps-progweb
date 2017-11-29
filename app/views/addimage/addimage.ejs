@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link rel="shortcut icon" href="favicon.ico">
-
-    <link rel="stylesheet" href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/js/script.js"></script> 
 </head>
 
 <body>
@@ -16,23 +16,17 @@
             <div class="main-title">
                 <h1 class="primary-text">Add new images</h1>
             </div>
-            <form action="/image" method="POST" enctype="multipart/form-data" class="image-form">
+            <form id="add_image_form" method="POST" enctype="multipart/form-data" class="image-form">
                 <div>
                     <label>Image name: </label>
                     <input type="text" name="image_nickname"/>                    
                     <input type="file" name="myimage">
                 </div>
-                 <%if(error){%>
-                    <div>
-                        <p class="error">
-                            <%=error%>
-                        </p>
-                    </div>
-                    <%}%>
                 <div class="banner-buttons">
-                    <input type="submit" value="Add image"/>
+                    <input id="btn_add_image" type="submit" value="Add image"/>
                 </div>
             </form>
+            <p id="status_image">Status: No image has been uploaded</p>
         </div>
     </section>
 </body>
