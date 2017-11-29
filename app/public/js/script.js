@@ -17,7 +17,7 @@ loadImages = {
         var nickname = $("#nickname_image").val();
         $.ajax({
             type: 'GET',
-            url: '/images/regex/' + nickname,
+            url: '/images/' + nickname,
             success: function (result) {
                 loadImages.printResult(result);
             }
@@ -121,18 +121,9 @@ idleClient = {
     }
 }
 
-idleClient = {
-    onInactive: function (ms, cb) {
-        wait = setTimeout(cb, ms);
-        $('#nickname_image').keypress(function () {
-            clearTimeout(wait);
-            wait = setTimeout(cb, ms);
-        });
-    }
-}
-
 idleClient.onInactive(400, function () {
     var field_nickname = $("#nickname_image");
+    console.log("isi");
     if (field_nickname.is(':focus') && field_nickname.val() != '') {
         $("datalist").empty();
         $.ajax({
@@ -152,6 +143,17 @@ idleClient.onInactive(400, function () {
         $("datalist").empty();
     }
 });
+
+idleClient = {
+    onInactive: function (ms, cb) {
+        wait = setTimeout(cb, ms);
+        $('#nickname_image').keypress(function () {
+            clearTimeout(wait);
+            wait = setTimeout(cb, ms);
+        });
+    }
+}
+
 // function called by "search button flickr"
 function jsonFlickrFeed(json) {
     console.log(json.items);
@@ -162,5 +164,5 @@ function jsonFlickrFeed(json) {
 $(document).ready(function () {
     loadImages.init();
     uploadImage.init();
-    idleClient.onInactive();
+    idleClient.init();
 });
