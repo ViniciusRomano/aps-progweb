@@ -1,4 +1,4 @@
-loadImages = {
+var loadImages = {
     init: function () {
         loadImages.load();
         loadImages.setButtons();
@@ -62,7 +62,6 @@ loadImages = {
         } else {
             var str = [];
             for (var i = 0; i < 5; i++) {
-                console.log(result[i]);
                 str.push("<div class=\"square\" style=\"background-image: url('" + result[i].media.m + "\');\">");
                 str.push('<div class="overlay">')
                 str.push('<div class="text">' + result[i].title + '</div>')
@@ -77,7 +76,7 @@ loadImages = {
     }
 };
 
-uploadImage = {
+var uploadImage = {
     init: function () {
         uploadImage.submitEvent();
     },
@@ -93,12 +92,10 @@ uploadImage = {
                 processData: false,
                 contentType: false,
                 success: function (result) {
-                    console.log(result)
                     $('#status_image').text("Status: Image Uploaded!");
                     loadImages.init();
                 },
                 error: function (result) {
-                    console.log(result)
                     $('#status_image').text("Status:Error!");
                 }
             });
@@ -106,24 +103,18 @@ uploadImage = {
     }
 };
 
-idleClient = {
-    init: function () {
-        idleClient.onInactive();
-    },
+var idleClient = {
     onInactive: function (ms, cb) {
         var wait = setTimeout(cb, ms);
-
-        document.onmousemove = document.mousedown = document.mouseup = document.onkeydown = document.onkeyup = document.focus = function () {
+        document.onkeydown = document.onkeyup = document.focus = function () {
             clearTimeout(wait);
             wait = setTimeout(cb, ms);
-
         };
     }
 }
 
 idleClient.onInactive(400, function () {
     var field_nickname = $("#nickname_image");
-    console.log("isi");
     if (field_nickname.is(':focus') && field_nickname.val() != '') {
         $("datalist").empty();
         $.ajax({
@@ -138,21 +129,7 @@ idleClient.onInactive(400, function () {
         });
 
     }
-    // clean search field
-    if (field_nickname.val() == '') {
-        $("datalist").empty();
-    }
 });
-
-idleClient = {
-    onInactive: function (ms, cb) {
-        wait = setTimeout(cb, ms);
-        $('#nickname_image').keypress(function () {
-            clearTimeout(wait);
-            wait = setTimeout(cb, ms);
-        });
-    }
-}
 
 // function called by "search button flickr"
 function jsonFlickrFeed(json) {
@@ -164,5 +141,4 @@ function jsonFlickrFeed(json) {
 $(document).ready(function () {
     loadImages.init();
     uploadImage.init();
-    idleClient.init();
 });

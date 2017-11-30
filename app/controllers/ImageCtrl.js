@@ -12,7 +12,6 @@ function ImageCtrl(app, mongoose) {
         var connection = new app.databases.mongoConnection();
         // Protect route
         if (!session.status) {
-            console.log("aisjaos")
             res.status(403).json({
                 error: 'You are not logged in'
             });
